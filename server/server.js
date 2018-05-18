@@ -7,7 +7,8 @@ const PORT = process.env.PORT || 3001;
 
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-mongoose.connect('mongodb://localhost/mern-secure', { promiseLibrary: require('bluebird') })
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/userAuthDB";
+mongoose.connect(MONGODB_URI, { promiseLibrary: require('bluebird') })
   .then(() =>  console.log('connection succesful'))
   .catch((err) => console.error(err));
 
