@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var passport = require('passport');
-var settings = require('../config/settings');
+// var settings = require('../config/settings');
 require('../config/passport')(passport);
 var express = require('express');
 var jwt = require('jsonwebtoken');
@@ -38,7 +38,8 @@ router.post('/login', function(req, res) {
         user.comparePassword(req.body.password, function (err, isMatch) {
             if (isMatch && !err) {
             // if user is found and password is right create a token
-            var token = jwt.sign(user.toJSON(), settings.secret);
+            let mySecret = process.env.MY_SECRET || "mySecretisnotthis";
+            var token = jwt.sign(user.toJSON(), mySecret);
             // return the information including token as JSON
             res.json({success: true, token: 'JWT ' + token});
             } else {
