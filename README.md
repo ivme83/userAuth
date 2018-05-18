@@ -2,7 +2,7 @@
 
 [This is the tutorial that I used to initially create with.](https://www.djamware.com/post/5a90c37980aca7059c14297a/securing-mern-stack-web-application-using-passport)
 
-I then made a lot of changes to put all React folders into the client folder.  As well as putting all of the server side code into a server folder.
+I then made a few changes to put all React folders into the client folder.
 
 npm install should be run in each of the folders: client and server
 
