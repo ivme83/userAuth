@@ -11,6 +11,9 @@
         "react-scripts": "^1.1.4",
         "bootstrap": "^4.1.1"
     },
+    "devDependencies": {
+      "axios": "^0.18.0"
+    },
     "scripts": {
       "start": "react-scripts start",
       "build": "react-scripts build",
