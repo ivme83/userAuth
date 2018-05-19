@@ -19,6 +19,7 @@
       "nodemon": "^1.11.0"
     },
     "dependencies": {
+        "concurrently": "^3.5.0",
         "bcrypt-nodejs": "0.0.3",
         "bluebird": "^3.5.1",
         "body-parser": "^1.18.3",
