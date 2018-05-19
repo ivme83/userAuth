@@ -1,15 +1,15 @@
-var express = require('express');
-var router = express.Router();
-var mongoose = require('mongoose');
-var Book = require('../models/Book.js');
-var passport = require('passport');
+const express         = require('express');
+const router          = express.Router();
+const mongoose        = require('mongoose');
+const Book            = require('../models/Book.js');
+const passport        = require('passport');
 require('../config/passport')(passport);
 
 /* GET ALL BOOKS */
-router.get('/', passport.authenticate('jwt', { session: false}), function(req, res) {
-  var token = getToken(req.headers);
+router.get('/', passport.authenticate('jwt', { session: false}), (req, res) => {
+  let token = getToken(req.headers);
   if (token) {
-    Book.find(function (err, books) {
+    Book.find((err, books) => {
       if (err) return next(err);
       res.json(books);
     });
@@ -19,10 +19,10 @@ router.get('/', passport.authenticate('jwt', { session: false}), function(req, r
 });
 
 /* SAVE BOOK */
-router.post('/', passport.authenticate('jwt', { session: false}), function(req, res) {
-  var token = getToken(req.headers);
+router.post('/', passport.authenticate('jwt', { session: false}), (req, res) => {
+  let token = getToken(req.headers);
   if (token) {
-    Book.create(req.body, function (err, post) {
+    Book.create(req.body, (err, post) => {
       if (err) return next(err);
       res.json(post);
     });
@@ -31,9 +31,9 @@ router.post('/', passport.authenticate('jwt', { session: false}), function(req, 
   }
 });
 
-getToken = function (headers) {
+getToken = (headers) => {
   if (headers && headers.authorization) {
-    var parted = headers.authorization.split(' ');
+    let parted = headers.authorization.split(' ');
     if (parted.length === 2) {
       return parted[1];
     } else {
