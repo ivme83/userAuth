@@ -14,12 +14,13 @@ class App extends Component {
 
   componentDidMount() {
     axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
-    axios.get('/api/book')
+    axios.get('https://guarded-earth-20635.herokuapp.com/api/book')
       .then(res => {
         this.setState({ books: res.data });
         console.log(this.state.books);
       })
       .catch((error) => {
+        console.log(error);
         if(error.response.status === 401) {
           this.props.history.push("/login");
         }

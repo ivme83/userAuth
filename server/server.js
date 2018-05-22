@@ -3,6 +3,8 @@ const path            = require('path');
 const favicon         = require('serve-favicon');
 const logger          = require('morgan');
 const bodyParser      = require('body-parser');
+const cors            = require('cors');
+const PORT            = process.env.PORT || 3001;
 
 const mongoose        = require('mongoose');
 mongoose.Promise      = require('bluebird');
@@ -15,6 +17,7 @@ const book            = require('./routes/book');
 const auth            = require('./routes/auth');
 const app             = express();
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended':'false'}));
@@ -24,9 +27,9 @@ app.use('/api/book', book);
 app.use('/api/auth', auth);
 
 // If no API routes are hit, send the React app
-app.use((req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
-});
+// app.use((req, res) => {
+//   res.sendFile(path.join(__dirname, "../client/build/index.html"));
+// });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -46,4 +49,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+// module.exports = app;
+
+app.listen(PORT, function() {
+  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+});
